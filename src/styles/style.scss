@@ -353,7 +353,50 @@ a, a:hover {
   }
 }
 
+.featured__title {
+  font-size: 15px;
+  text-transform: uppercase;
+  margin: 0 5px 0 0;
+  color: #747272;
+}
 
+.lines__item {
+  display: block;
+  height: 1px;
+  margin: 2px 0;
+  background-color: #edeae6;
+}
+
+.switch-btn {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  background-color: $main-orange;
+  border-radius: 3px;
+
+  div {
+    position: absolute;
+    height: 3px;
+    width: 15px;
+    left: 5px;
+    top: 11px;
+    background-color: white;
+  }
+}
+
+.closed {
+  transform: rotate(90deg);
+}
+
+.hideBlock {
+  display: none;
+}
+
+.test-block {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
 
 
 

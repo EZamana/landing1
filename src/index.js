@@ -1,19 +1,18 @@
-import test from "./sliderconfig";
-
 import * as $ from 'jquery';
-
-
 import './styles/style.scss';
-
-
 import 'slick-carousel'
 
 
-/*$('.col').html('hello world 2')*/
+$('.switch-btn').on('click', () => {
+  $('.plus-btn__line').toggleClass('closed')
+  $('.products__container').toggleClass('hideBlock')
+})
+
+
+
 
 $(document).ready(function () {
   $('.brands__container').slick({
-    infinite: true,
     /*speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,*/
@@ -22,7 +21,7 @@ $(document).ready(function () {
       breakpoint: 1900,
       settings: {
         slidesToShow:  3,
-        infinite: true
+        infinite: false
       }
     }]
   });
