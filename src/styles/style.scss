@@ -393,9 +393,19 @@ a, a:hover {
 }
 
 .test-block {
-  width: 100px;
-  height: 100px;
-  background-color: red;
+  width: 150px;
+  height: 150px;
+  background-color: grey;
+  margin: 10px 0;
+}
+
+.buy-btn {
+  width: 50px;
+  background-color: $main-orange;
+}
+
+.products__pop-up {
+
 }
 
 

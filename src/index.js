@@ -8,9 +8,6 @@ $('.switch-btn').on('click', () => {
   $('.products__container').toggleClass('hideBlock')
 })
 
-
-
-
 $(document).ready(function () {
   $('.brands__container').slick({
     /*speed: 300,
@@ -26,5 +23,9 @@ $(document).ready(function () {
     }]
   });
 })
+
+
+var htmlContent = $('.buy-btn').html();
+console.log(htmlContent);
 
 
