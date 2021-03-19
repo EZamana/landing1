@@ -392,21 +392,72 @@ a, a:hover {
   display: none;
 }
 
-.test-block {
-  width: 150px;
-  height: 150px;
-  background-color: grey;
-  margin: 10px 0;
+.products__container {
+  display: flex;
+  justify-content: space-between;
 }
 
-.buy-btn {
-  width: 50px;
+.product {
+  background-color: #d8d8d8;
+  width: 220px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.product__img {
+  height: 175px;
+  width: 200px;
+}
+
+.product__elements__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+
+}
+
+.product__cost {
+  display: flex;
+}
+
+.product__cost__character {
+  padding: 5px 0;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+  width: 17px;
+  border: 1px solid #747474;
+}
+
+.character-dollar {
+  background-color: #565656;
+}
+
+.character-digital {
+  color: #747474;
+}
+
+.product__cost__value {
+  display: none;
+}
+
+.product__btn {
+  width: 110px;
+  padding: 5px 0;
   background-color: $main-orange;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #8f8f8f;
+    transition: .3s;
+  }
 }
 
-.products__pop-up {
-
-}
 
 
 
