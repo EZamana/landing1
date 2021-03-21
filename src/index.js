@@ -2,6 +2,10 @@ import * as $ from 'jquery';
 import './styles/style.scss';
 import 'slick-carousel'
 
+window.$ = window.jQuery = require('jquery');
+const fancybox = require('@fancyapps/fancybox');
+const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
+
 
 $(document).ready(function () {
   $('.brands__container').slick({
@@ -12,8 +16,9 @@ $(document).ready(function () {
 
       breakpoint: 1900,
       settings: {
-        slidesToShow: 3,
-        infinite: false
+        slidesToShow: 4,
+        infinite: false,
+        arrows: false,
       }
     }]
   });
@@ -33,17 +38,45 @@ $('.switch-btn').on('click', () => {
   console.log(htmlContent)
 })*/
 
-$('.product__cost__value').each(function () {
-  let costValues = $(this).html().split('')
+function createCostBlock(costValueBlock) {
+  let costValues = $(costValueBlock).html().split('')
 
-  costValues.forEach(value => {
+  costValues.forEach(costValue => {
     let newDiv = document.createElement('div')
     newDiv.classList.add('product__cost__character')
     newDiv.classList.add('character-digital')
-    newDiv.innerHTML = value;
-    $(this).parent().append(newDiv)
+    newDiv.innerHTML = costValue;
+
+    $(costValueBlock).parent().find('.product__cost__digits__container').append(newDiv)
+  })
+}
+
+$('.product__cost__value').each(function () {
+  createCostBlock(this)
+})
+
+$('.product__img').each(function () {
+  let img = $(this).find('img').attr('src')
+  $(this).css('background', `url(${img})`)
+  $(this).css('background-position', 'center top')
+})
+
+$('.product__btn').on('click', (event) => {
+  let attr = $(event.target).closest('.product').find('img').attr('src')
+  let cost = $(event.target).closest('.product').find('.product__cost__value').html()
+  let productName = $(event.target).closest('.product').find('.product__name').html()
+  let popupCostValue = $('.products__pop-up .product__cost__value')
+  $('.products__pop-up img').attr('src', attr)
+  $('.products__pop-up .product__name').html(productName)
+  popupCostValue.html(cost)
+  createCostBlock(popupCostValue)
+  $.fancybox.open($('.products__pop-up'), {
+    afterClose: function () {
+      popupCostValue.closest('.product__cost').find('.product__cost__digits__container').html('')
+    }
   })
 })
+
 
 
 
