@@ -393,6 +393,7 @@ a, a:hover {
 }
 
 .products__container {
+  position: relative;
   margin: 40px 0;
   display: flex;
   justify-content: space-between;
@@ -537,7 +538,23 @@ a, a:hover {
 }
 
 .products__slider__container {
-  width: 940px;
+  max-width: 940px;
+
+  .product {
+    margin: 0 auto;
+  }
+}
+
+.latest {
+  .arrowPrev {
+    position: absolute;
+    left: - 15px;
+  }
+
+  .arrowNext {
+    position: absolute;
+    right: -15px;
+  }
 }
 
 
