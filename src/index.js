@@ -9,9 +9,9 @@ const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
 
 $(document).ready(function () {
   $('.brands__container').slick({
-    /*speed: 300,
+    speed: 300,
     slidesToShow: 1,
-    slidesToScroll: 1,*/
+    slidesToScroll: 1,
     responsive: [{
 
       breakpoint: 1900,
@@ -23,6 +23,35 @@ $(document).ready(function () {
     }]
   });
 })
+
+$(document).ready(function () {
+  $('.products__slider__container').slick({
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    responsive: [{
+
+      breakpoint: 1900,
+      settings: {
+        slidesToShow: 2,
+        infinite: false,
+        arrows: false,
+      }
+    }]
+  });
+})
+
+$('.brands__slider__prev-btn').click(function () {
+  $(this).siblings('.brands__container').slick('slickPrev')
+})
+
+$('.brands__slider__next-btn').click(function () {
+  $(this).siblings('.brands__container').slick('slickNext')
+})
+
+
+
+
 
 $('.switch-btn').on('click', () => {
   $('.plus-btn__line').toggleClass('closed')

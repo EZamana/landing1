@@ -59,6 +59,10 @@ a, a:hover {
   text-decoration: none;
 }
 
+.container-fluid {
+
+}
+
 @media (min-width: 970px) {
   .container-fluid {
     max-width: 970px;
@@ -389,6 +393,7 @@ a, a:hover {
 }
 
 .products__container {
+  margin: 40px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -494,13 +499,14 @@ a, a:hover {
   padding: 30px;
 }
 
-.brands {
-  display: flex;
-  align-items: center;
-}
-
 .brands__container {
   max-width: 910px;
+  margin: 30px 0;
+}
+
+.brands__slider_container {
+  display: flex;
+  align-items: center;
 }
 
 .brands__item__container {
@@ -508,6 +514,11 @@ a, a:hover {
 
   img {
     margin: 0 auto;
+  }
+
+  &:hover {
+    transform: scale(1.5);
+    transition: .3s;
   }
 }
 
@@ -522,8 +533,12 @@ a, a:hover {
 .arrowNext, .arrowPrev {
   width: 13px;
   height: 20px;
+  cursor: pointer;
 }
 
+.products__slider__container {
+  width: 940px;
+}
 
 
 
