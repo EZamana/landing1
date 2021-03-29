@@ -95,6 +95,8 @@ $('.product__img').each(function () {
   $(this).css('background-position', 'center top')
 })
 
+
+
 $('.switch-btn').on('click', () => {
   $('.plus-btn__line').toggleClass('closed')
   $('.products__container').toggleClass('hideBlock')
