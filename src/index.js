@@ -98,7 +98,7 @@ $('.product__img').each(function () {
 
 
 $('.switch-btn').on('click', () => {
-  $('.plus-btn__line').toggleClass('closed')
+  $('.switch-btn__line_active').toggleClass('closed')
   $('.products__container').toggleClass('hideBlock')
   if (!isProductSliderInit) {
     productsSlider.slick({

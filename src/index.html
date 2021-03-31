@@ -37,12 +37,18 @@
               <li class="catalog-navigation__item"><a href="" class="catalog-navigation__link">Desktops</a></li>
               <li class="catalog-navigation__item"><a href="" class="catalog-navigation__link">Laptops & Notebooks</a>
                 <ul class="sub-catalog-navigation">
-                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Sony(2)</a></li>
-                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Android(4)</a></li>
-                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Apple(7)</a></li>
-                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Acer(53)</a></li>
-                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">HP(78)</a></li>
-                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Intel(5)</a></li>
+                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Sony(2)</a>
+                  </li>
+                  <li class="sub-catalog-navigation__item"><a href=""
+                                                              class="sub-catalog-navigation__link">Android(4)</a></li>
+                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Apple(7)</a>
+                  </li>
+                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Acer(53)</a>
+                  </li>
+                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">HP(78)</a>
+                  </li>
+                  <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Intel(5)</a>
+                  </li>
                 </ul>
               </li>
               <li class="catalog-navigation__item"><a href="" class="catalog-navigation__link">Components</a></li>
@@ -118,10 +124,10 @@
       <section class="featured">
         <div class="row no-gutters align-items-center">
           <div class="col-auto">
-            <h3 class="featured__title">featured</h3>
+            <h3 class="section-title">featured</h3>
           </div>
           <div class="col">
-            <div>
+            <div class="lines">
               <div class="lines__item"></div>
               <div class="lines__item"></div>
               <div class="lines__item"></div>
@@ -130,8 +136,8 @@
           </div>
           <div class="col-auto">
             <div class="switch-btn">
-              <div class="plus-btn__line"></div>
-              <div></div>
+              <div class="switch-btn__line switch-btn__line_active"></div>
+              <div class="switch-btn__line"></div>
             </div>
           </div>
         </div>
@@ -211,7 +217,7 @@
       <section class="brands">
         <div class="row no-gutters align-items-center">
           <div class="col-auto">
-            <h3 class="featured__title">brands</h3>
+            <h3 class="brands__title">brands</h3>
           </div>
           <div class="col">
             <div>
@@ -260,7 +266,7 @@
       <section class="latest">
         <div class="row no-gutters align-items-center">
           <div class="col-auto">
-            <h3 class="featured__title">latest</h3>
+            <h3 class="section-title">latest</h3>
           </div>
           <div class="col">
             <div>
@@ -272,8 +278,8 @@
           </div>
           <div class="col-auto">
             <div class="switch-btn">
-              <div class="plus-btn__line closed"></div>
-              <div></div>
+              <div class="switch-btn__line switch-btn__line_active closed"></div>
+              <div class="switch-btn__line"></div>
             </div>
           </div>
         </div>
@@ -425,14 +431,14 @@
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col">
-            <div class="footer-top-row__first-col">
+            <div class="footer-top-row__col footer-top-row__col_first">
               <h2 class="footer-top-row__title">Suspendisse sed</h2>
               <p class="footer-top-row__text">Aliquam dignissim porttitor tortor non fermentum. Curabitur in magna
                 lectus. Duis sed eros diam. Lorem ipsum dolor sit amet, consectetur.</p>
             </div>
           </div>
           <div class="col">
-            <div class="footer-top-row__second-col">
+            <div class="footer-top-row__col  footer-top-row__col_second">
               <h2 class="footer-top-row__title">Suspendisse sed</h2>
               <p class="footer-top-row__text">Aliquam dignissim porttitor tortor non fermentum. Curabitur in magna
                 lectus.
@@ -440,7 +446,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="footer-top-row__third-col">
+            <div class="footer-top-row__col footer-top-row__col_third">
               <h2 class="footer-top-row__title">Suspendisse sed</h2>
               <p class="footer-top-row__text">Aliquam dignissim porttitor tortor non fermentum. Curabitur in magna
                 lectus.
@@ -454,37 +460,47 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h2 class="footer-middle-row__title">about us</h2>
-            <p class="footer-middle-row__text">Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt
-              elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius.
-              Vestibulum dolor lorem.</p>
+            <div class="footer-middle-row__col">
+              <h2 class="footer-middle-row__title">about us</h2>
+              <p class="footer-middle-row__text">Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt
+                elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius.
+                Vestibulum dolor lorem.</p>
+            </div>
           </div>
           <div class="col">
-            <h2 class="footer-middle-row__title">information</h2>
-            <a href="">About Us</a>
-            <a href="">Delivery Information</a>
-            <a href="">Privacy Policy</a>
-            <a href="">Terms & Conditions</a>
+            <div class="footer-middle-row__col">
+              <h2 class="footer-middle-row__title">information</h2>
+              <a href="" class="footer-middle-row__link">About Us</a>
+              <a href="" class="footer-middle-row__link">Delivery Information</a>
+              <a href="" class="footer-middle-row__link">Privacy Policy</a>
+              <a href="" class="footer-middle-row__link">Terms & Conditions</a>
+            </div>
           </div>
           <div class="col">
-            <h2 class="footer-middle-row__title">customer service</h2>
-            <a href="">Contact Us</a>
-            <a href="">Returns</a>
-            <a href="">Site Map</a>
+            <div class="footer-middle-row__col">
+              <h2 class="footer-middle-row__title">customer service</h2>
+              <a href="" class="footer-middle-row__link">Contact Us</a>
+              <a href="" class="footer-middle-row__link">Returns</a>
+              <a href="" class="footer-middle-row__link">Site Map</a>
+            </div>
           </div>
           <div class="col">
-            <h2 class="footer-middle-row__title">my account</h2>
-            <a href="">My Account</a>
-            <a href="">Order History</a>
-            <a href="">Wish List</a>
-            <a href="">Newsletter</a>
+            <div class="footer-middle-row__col">
+              <h2 class="footer-middle-row__title">my account</h2>
+              <a href="" class="footer-middle-row__link">My Account</a>
+              <a href="" class="footer-middle-row__link">Order History</a>
+              <a href="" class="footer-middle-row__link">Wish List</a>
+              <a href="" class="footer-middle-row__link">Newsletter</a>
+            </div>
           </div>
           <div class="col">
-            <h2 class="footer-middle-row__title">extras</h2>
-            <a href="">Brands</a>
-            <a href="">Gift Vouchers</a>
-            <a href="">Affiliates</a>
-            <a href="">Specials</a>
+            <div class="footer-middle-row__col">
+              <h2 class="footer-middle-row__title">extras</h2>
+              <a href="" class="footer-middle-row__link">Brands</a>
+              <a href="" class="footer-middle-row__link">Gift Vouchers</a>
+              <a href="" class="footer-middle-row__link">Affiliates</a>
+              <a href="" class="footer-middle-row__link">Specials</a>
+            </div>
           </div>
         </div>
       </div>
@@ -493,10 +509,10 @@
       <div class="container-fluid">
         <div class="row justify-content-between align-items-center">
           <div class="col-auto">
-            <h3>copyright of bonfire 2012 All Rights Reserved</h3>
+            <h2 class="footer-bottom-row__title">copyright of bonfire 2012 All Rights Reserved</h2>
           </div>
           <div class="col-auto">
-            <h3>powered by opencart</h3>
+            <h2 class="footer-bottom-row__title">powered by opencart</h2>
           </div>
         </div>
       </div>
