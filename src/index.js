@@ -22,33 +22,33 @@ function createCostBlock(costValueBlock) {
 
   costValues.forEach(costValue => {
     let newDiv = document.createElement('div')
-    newDiv.classList.add('product__cost__character')
+    newDiv.classList.add('product-cost__character')
     newDiv.classList.add('character-digital')
     newDiv.innerHTML = costValue;
 
-    $(costValueBlock).parent().find('.product__cost__digits__container').append(newDiv)
+    $(costValueBlock).parent().find('.product-cost__digits').append(newDiv)
   })
 }
 
 function addProductPopupOpen(btnSelector) {
   $(btnSelector).on('click', (event) => {
     let attr = $(event.target).closest('.product').find('img').attr('src')
-    let cost = $(event.target).closest('.product').find('.product__cost__value').html()
+    let cost = $(event.target).closest('.product').find('.product-cost__value').html()
     let productName = $(event.target).closest('.product').find('.product__name').html()
-    let popupCostValue = $('.products__pop-up .product__cost__value')
-    $('.products__pop-up img').attr('src', attr)
-    $('.products__pop-up .product__name').html(productName)
+    let popupCostValue = $('.products-modal .product-cost__value')
+    $('.products-modal img').attr('src', attr)
+    $('.products-modal .product__name').html(productName)
     popupCostValue.html(cost)
     createCostBlock(popupCostValue)
-    $.fancybox.open($('.products__pop-up'), {
+    $.fancybox.open($('.products-modal'), {
       afterClose: function () {
-        popupCostValue.closest('.product__cost').find('.product__cost__digits__container').html('')
+        popupCostValue.closest('.product-cost').find('.product-cost__digits').html('')
       }
     })
   })
 }
 
-$('.product__cost__value').each(function () {
+$('.product-cost__value').each(function () {
   createCostBlock(this)
 })
 
@@ -73,11 +73,11 @@ $('.brands__container').slick({
   }]
 });
 
-$('.brands__slider_container .arrowPrev').click(function () {
+$('.brands-slider .arrowPrev').click(function () {
   $(this).siblings('.brands__container').slick('slickPrev')
 })
 
-$('.brands__slider_container .arrowNext').click(function () {
+$('.brands-slider .arrowNext').click(function () {
   $(this).siblings('.brands__container').slick('slickNext')
 })
 
@@ -99,7 +99,7 @@ $('.product__img').each(function () {
 
 $('.switch-btn').on('click', () => {
   $('.switch-btn__line_active').toggleClass('closed')
-  $('.products__container').toggleClass('hideBlock')
+  $('.products').toggleClass('hideBlock')
   if (!isProductSliderInit) {
     productsSlider.slick({
       speed: 300,
