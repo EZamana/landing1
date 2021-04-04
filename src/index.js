@@ -121,9 +121,11 @@ $('.switch-btn').on('click', () => {
 
 $(document).on('scroll', function () {
   console.log(pageYOffset)
-  console.log(scrollHeight)
-  console.log(document.body.clientHeight)
+  console.log(document.documentElement.scrollHeight)
+  console.log(document.documentElement.clientHeight)
 })
+
+
 
 
 
