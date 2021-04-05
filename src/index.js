@@ -6,16 +6,8 @@ window.$ = window.jQuery = require('jquery');
 const fancybox = require('@fancyapps/fancybox');
 const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
 
-let productsSlider = $('.products__slider__container');
+let productsSlider = $('.products-slider');
 let isProductSliderInit = false
-
-let scrollHeight = Math.max(
-    document.body.scrollHeight, document.documentElement.scrollHeight,
-    document.body.offsetHeight, document.documentElement.offsetHeight,
-    document.body.clientHeight, document.documentElement.clientHeight
-);
-
-
 
 function createCostBlock(costValueBlock) {
   let costValues = $(costValueBlock).html().split('')
@@ -82,11 +74,11 @@ $('.brands-slider .arrowNext').click(function () {
 })
 
 $('.latest .arrowPrev').click(function () {
-  $(this).siblings('.products__slider__container').slick('slickPrev')
+  $(this).siblings('.products-slider').slick('slickPrev')
 })
 
 $('.latest .arrowNext').click(function () {
-  $(this).siblings('.products__slider__container').slick('slickNext')
+  $(this).siblings('.products-slider').slick('slickNext')
 })
 
 $('.product__img').each(function () {
@@ -94,8 +86,6 @@ $('.product__img').each(function () {
   $(this).css('background', `url(${img})`)
   $(this).css('background-position', 'center top')
 })
-
-
 
 $('.switch-btn').on('click', () => {
   $('.switch-btn__line_active').toggleClass('closed')
@@ -119,11 +109,23 @@ $('.switch-btn').on('click', () => {
   }
 })
 
-$(document).on('scroll', function () {
+/*$(document).on('scroll', function () {
   console.log(pageYOffset)
   console.log(document.documentElement.scrollHeight)
   console.log(document.documentElement.clientHeight)
+})*/
+
+if (document.documentElement.clientHeight > document.documentElement.scrollHeight - $('footer').outerHeight()) {
+  $('.latest-products .product').slice(0, 4).show()
+}
+
+$(document).on('scroll', function () {
+  if (pageYOffset > document.documentElement.scrollHeight - document.documentElement.clientHeight - $('footer').outerHeight()) {
+    $('.latest-products .product:hidden').slice(0, 4).slideDown()
+  }
 })
+
+
 
 
 
