@@ -52,17 +52,28 @@ addProductPopupOpen('.featured .product__btn')
 
 $('.brands__container').slick({
   speed: 300,
-  slidesToShow: 1,
-  slidesToScroll: 1,
   responsive: [{
-
-    breakpoint: 1900,
+    breakpoint: 575,
     settings: {
-      slidesToShow: 4,
+      slidesToShow: 1,
       infinite: false,
       arrows: false,
     }
-  }]
+  }, {
+    breakpoint: 767,
+    settings: {
+      slidesToShow: 2,
+      infinite: false,
+      arrows: false,
+    }
+  }/*, {
+    breakpoint: 575,
+    settings: {
+      slidesToShow: 2,
+      infinite: false,
+      arrows: false,
+    }
+  }*/]
 });
 
 $('.brands-slider .arrowPrev').click(function () {
@@ -123,6 +134,12 @@ $(document).on('scroll', function () {
   if (pageYOffset > document.documentElement.scrollHeight - document.documentElement.clientHeight - $('footer').outerHeight()) {
     $('.latest-products .product:hidden').slice(0, 4).slideDown()
   }
+})
+
+$('.mobile-catalog-btn, .mobile-catalog__background').on('click', function () {
+  $('.mobile-catalog__background').toggleClass('hideBlock');
+  $('.mobile-catalog__container').toggleClass('show-mobile-catalog');
+  $('body').toggleClass('remove-horizontal-scroll');
 })
 
 
