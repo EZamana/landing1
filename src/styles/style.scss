@@ -311,27 +311,41 @@ a, a:hover {
   background-color: #f9f9f9;
 
   .row {
-    height: 60px;
+    min-height: 60px;
   }
 
   &__title {
     color: #acaaa2;
     font-size: 14px;
+    margin: 7px 0;
     font-style: italic;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
 .sinIn-form {
   display: flex;
+  flex-wrap: wrap;
 
   &__title {
+    margin: 7px 7px 7px 0;
     font-size: 15px;
     color: #acaaa2;
   }
 
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   &__input {
     width: 135px;
-    margin: 0 7px;
+    height: 22px;
+    margin-right: 7px;
     padding: 0 10px;
     font-size: 14px;
     border: 1px solid #e0e0e0;
@@ -341,6 +355,7 @@ a, a:hover {
   &__btn {
     height: 22px;
     width: 22px;
+    margin: 7px 0;
     background-color: #d4d4d4;
     border: 1px solid #acacac;
     border-radius: 5px;
@@ -355,7 +370,7 @@ a, a:hover {
 }
 
 .social-icons {
-  margin-right: 10px;
+  margin: 7px 10px 7px 0;
 
   &__item {
     margin: 0 5px;
@@ -366,12 +381,12 @@ a, a:hover {
   background-color: #f4ebcd;
 
   .row {
-    height: 140px;
+    min-height: 140px;
   }
 
   &__col {
     position: relative;
-    margin-left: 25px;
+    margin: 15px 0 25px 15px;
 
     &:before {
       position: absolute;
@@ -409,11 +424,11 @@ a, a:hover {
   background-color: #636363;
 
   .row {
-    height: 250px;
+    min-height: 250px;
   }
 
   &__col {
-    margin-top: 25px;
+    margin: 25px 0;
   }
 
   &__title {
@@ -442,7 +457,7 @@ a, a:hover {
   background-color: #4c4c4c;
 
   .row {
-    height: 70px;
+    min-height: 70px;
   }
 
   &__title {
