@@ -52,6 +52,8 @@ addProductPopupOpen('.featured .product__btn')
 
 $('.brands__container').slick({
   speed: 300,
+  slidesToShow: 4,
+
   responsive: [{
     breakpoint: 575,
     settings: {
@@ -66,14 +68,14 @@ $('.brands__container').slick({
       infinite: false,
       arrows: false,
     }
-  }/*, {
-    breakpoint: 575,
+  }, {
+    breakpoint: 991,
     settings: {
-      slidesToShow: 2,
+      slidesToShow: 3,
       infinite: false,
       arrows: false,
     }
-  }*/]
+  },]
 });
 
 $('.brands-slider .arrowPrev').click(function () {

@@ -76,7 +76,14 @@ a, a:hover {
   background-color: $main-orange;
 
   .row {
-    height: 80px;
+    min-height: 80px;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   &__title {
@@ -94,7 +101,7 @@ a, a:hover {
   }
 
   &__subtitle {
-    margin-left: 20px;
+    margin: 4px 0 0 20px;
     @extend %header-top-text-style
   }
 }
@@ -120,7 +127,7 @@ a, a:hover {
   position: relative;
   border: 2px solid #ed3d1d;
   border-radius: 8px;
-  margin: 0 8px;
+  margin: 8px;
 
   &:after {
     position: absolute;
@@ -681,14 +688,21 @@ a, a:hover {
 
   &__container {
     width: inherit;
-    /*max-width: 910px;*/
     margin: 30px 0;
+  }
+
+  .arrowNext {
+    right: 15px;
+  }
+
+  .arrowPrev {
+    left: 15px;
   }
 
   &__item {
     width: 100px;
     position: relative;
-    z-index: 1232;
+
 
     img {
       margin: 0 auto;
@@ -710,6 +724,7 @@ a, a:hover {
 }
 
 .arrowNext, .arrowPrev {
+  position: absolute;
   width: 13px;
   height: 20px;
   cursor: pointer;
@@ -725,12 +740,10 @@ a, a:hover {
 
 .latest {
   .arrowPrev {
-    position: absolute;
     left: - 15px;
   }
 
   .arrowNext {
-    position: absolute;
     right: -15px;
   }
 }
@@ -832,16 +845,33 @@ a, a:hover {
   }
 
   &__controls {
+    background-color: #94d3d1;
     height: 65px;
     margin-left: 27px;
+
+    @media (max-width: 767px) {
+      & {
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+      }
+    }
   }
 
   &__preview {
     display: flex;
     justify-content: flex-end;
-    height: 65px;
+    min-height: 65px;
     padding: 0 27px;
     background-color: #94d3d1;
+
+    @media (max-width: 767px) {
+      & {
+        margin-top: 65px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
   }
 
   &__title {
@@ -852,6 +882,7 @@ a, a:hover {
 
   &__btn {
     width: 80px;
+    margin: 10px 0;
     padding: 5px 0;
     border: 1px solid #79c3c1;
     border-radius: 5px;
