@@ -6,8 +6,37 @@ window.$ = window.jQuery = require('jquery');
 const fancybox = require('@fancyapps/fancybox');
 const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
 
-let productsSlider = $('.products-slider');
+const productsSlider = $('.products-slider');
 let isProductSliderInit = false
+
+const productsSliderConfig = {
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+
+  responsive: [{
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 1,
+      infinite: false,
+      arrows: false,
+    }
+  }, {
+    breakpoint: 800,
+    settings: {
+      slidesToShow: 2,
+      infinite: false,
+      arrows: false,
+    }
+  }, {
+    breakpoint: 1199,
+    settings: {
+      slidesToShow: 3,
+      infinite: false,
+      arrows: false,
+    }
+  },]
+}
 
 function createCostBlock(costValueBlock) {
   let costValues = $(costValueBlock).html().split('')
@@ -53,6 +82,8 @@ addProductPopupOpen('.featured .product__btn')
 $('.brands__container').slick({
   speed: 300,
   slidesToShow: 4,
+  infinite: false,
+  arrows: false,
 
   responsive: [{
     breakpoint: 575,
@@ -104,29 +135,10 @@ $('.switch-btn').on('click', () => {
   $('.switch-btn__line_active').toggleClass('closed')
   $('.products').toggleClass('hideBlock')
   if (!isProductSliderInit) {
-    productsSlider.slick({
-      speed: 300,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      infinite: true,
-      arrows: false,
-      responsive: [{
-
-        breakpoint: 1900,
-        settings: {
-          slidesToShow: 4,
-        }
-      }]
-    });
+    productsSlider.slick(productsSliderConfig);
     isProductSliderInit = !isProductSliderInit
   }
 })
-
-/*$(document).on('scroll', function () {
-  console.log(pageYOffset)
-  console.log(document.documentElement.scrollHeight)
-  console.log(document.documentElement.clientHeight)
-})*/
 
 if (document.documentElement.clientHeight > document.documentElement.scrollHeight - $('footer').outerHeight()) {
   $('.latest-products .product').slice(0, 4).show()

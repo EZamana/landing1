@@ -3,27 +3,8 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/mixins";
-
-/*@import "src/assets/slick/slick-theme";
-@import "src/assets/slick/slick";*/
-
-/*@import '~slick-carousel/slick/slick', '~slick-carousel/slick/slick-theme';*/
-
-/*@import "fix-slick";*/
-
-/*@import '~slick-carousel/slick/slick', '~slick-carousel/slick/slick-theme';*/
-
 @import "slick_styles/slick";
 @import "slick_styles/slickTheme";
-
-
-/*$container-max-widths: (
-        sm: 420px,
-        md: 720px,
-        lg: 900px,
-        xl: 920px,
-        xxl: 1100px
-);*/
 
 $main-orange: #f54b24;
 
@@ -60,10 +41,6 @@ ul {
 
 a, a:hover {
   text-decoration: none;
-}
-
-.container-fluid {
-
 }
 
 @media (min-width: 970px) {
@@ -259,7 +236,12 @@ a, a:hover {
   }
 
   &__sublist {
-    margin: 5px 0 5px 20px;
+    margin: 5px 10px;
+
+    &-link {
+      color: #7d7253;
+      font-size: 13px;
+    }
   }
 
   &__item {
@@ -269,10 +251,6 @@ a, a:hover {
   &__link {
     color: #7d7253;
     font-size: 15px;
-
-    &_active:hover {
-      color: red;
-    }
   }
 
   &__background {
@@ -511,9 +489,11 @@ a, a:hover {
   transform: rotate(90deg);
 }
 
+.featured {
+  margin-top: 45px;
+}
+
 .products {
-  position: relative;
-  margin: 40px 0;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -527,8 +507,14 @@ a, a:hover {
   background-color: #d8d8d8;
   width: 220px;
   padding: 10px;
-  margin: 20px 0;
+  margin: 35px 0;
   border-radius: 5px;
+
+  @media (max-width: 767px) {
+    & {
+      margin: 20px 0;
+    }
+  }
 
   &__img {
     position: relative;
@@ -672,6 +658,7 @@ a, a:hover {
 
 .brands {
   width: inherit;
+  margin-top: 10px;
 
   &-slider {
     width: inherit;
@@ -688,21 +675,14 @@ a, a:hover {
 
   &__container {
     width: inherit;
+    /*max-width: 910px;*/
     margin: 30px 0;
-  }
-
-  .arrowNext {
-    right: 15px;
-  }
-
-  .arrowPrev {
-    left: 15px;
   }
 
   &__item {
     width: 100px;
     position: relative;
-
+    z-index: 1;
 
     img {
       margin: 0 auto;
@@ -712,6 +692,14 @@ a, a:hover {
         transition: .3s;
       }
     }
+  }
+
+  .arrowPrev {
+    left: 15px;
+  }
+
+  .arrowNext {
+    right: 15px;
   }
 }
 
@@ -724,6 +712,7 @@ a, a:hover {
 }
 
 .arrowNext, .arrowPrev {
+  z-index: 2;
   position: absolute;
   width: 13px;
   height: 20px;
@@ -733,23 +722,55 @@ a, a:hover {
 .products-slider {
   max-width: 940px;
 
+  @media (max-width: 991px) {
+    & {
+      min-width: 768px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    & {
+      min-width: 576px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    & {
+      min-width: 320px;
+    }
+  }
+
   .product {
-    margin: 0 auto;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
 .latest {
   .arrowPrev {
     left: - 15px;
+
+    @media (max-width: 1199px) {
+      & {
+        left: 15px;
+      }
+    }
   }
 
   .arrowNext {
     right: -15px;
+
+    @media (max-width: 1199px) {
+      & {
+        right: 15px;
+      }
+    }
   }
 }
 
 .main-slider {
   color: white;
+  margin: 25px 0;
 
   &__container {
     height: 355px;
@@ -877,6 +898,7 @@ a, a:hover {
   &__title {
     font-size: 15px;
     font-weight: normal;
+    text-align: center;
     margin: 0 10px 0;
   }
 
@@ -923,12 +945,13 @@ a, a:hover {
 .latest-products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
 
 
   .product {
     display: none;
-    margin: 20px 7px;
+    /*margin-left: 7px;
+    margin-right: 7px;*/
   }
 }
 
