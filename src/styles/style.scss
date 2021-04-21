@@ -57,10 +57,8 @@ a, a:hover {
   text-decoration: none;
 }
 
-@media (min-width: 970px) {
-  .container-fluid {
-    max-width: 970px;
-  }
+.container-fluid {
+  max-width: 970px;
 }
 
 .header-top-row {
@@ -680,9 +678,14 @@ a, a:hover {
   padding: 30px;
 }
 
+.slick-list {
+  overflow: visible;
+}
+
 .brands {
   width: inherit;
   margin-top: 10px;
+  overflow: hidden;
 
   &-slider {
     width: inherit;
@@ -699,17 +702,14 @@ a, a:hover {
 
   &__container {
     width: inherit;
-    /*max-width: 910px;*/
     margin: 30px 0;
   }
 
   &__item {
-    width: 100px;
-    position: relative;
-    z-index: 1;
 
     img {
       margin: 0 auto;
+      position: relative;
 
       &:hover {
         transform: scale(1.5);
@@ -977,11 +977,6 @@ a, a:hover {
     display: none;
   }
 }
-
-
-
-
-
 
 
 
