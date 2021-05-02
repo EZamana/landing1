@@ -9,6 +9,7 @@ const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
 const productsSlider = $('.products-slider');
 let isProductSliderInit = false
 
+
 const productsSliderConfig = {
   speed: 300,
   slidesToShow: 4,

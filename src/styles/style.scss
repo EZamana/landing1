@@ -678,14 +678,14 @@ a, a:hover {
   padding: 30px;
 }
 
-.slick-list {
-  overflow: visible;
-}
-
 .brands {
   width: inherit;
   margin-top: 10px;
   overflow: hidden;
+
+  .slick-list {
+    overflow: visible;
+  }
 
   &-slider {
     width: inherit;

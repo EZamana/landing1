@@ -29,7 +29,7 @@ module.exports = {
   mode: "development",
   entry: {
     main: './src/index.js',
-    someAPI: './src/someAPI.js'
+    firebase: './src/firebase.js'
   },
   output: {
     filename: '[name].bundle.js',
@@ -50,6 +50,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       template: "./src/index.html",
+      hash: true,
       minify: {
         collapseWhitespace: isProd
       }
@@ -93,6 +94,11 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.js$/i,
+        exclude: /\.file.js$/i,
+        loader: 'babel-loader',
       }
     ]
   }
