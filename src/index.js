@@ -2,6 +2,8 @@ import * as $ from 'jquery';
 import './styles/style.scss';
 import 'slick-carousel'
 
+import createUser from "./firebase";
+
 window.$ = window.jQuery = require('jquery');
 const fancybox = require('@fancyapps/fancybox');
 const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
@@ -156,6 +158,25 @@ $('.mobile-catalog-btn, .mobile-catalog__background').on('click', function () {
   $('.mobile-catalog__container').toggleClass('show-mobile-catalog');
   $('body').toggleClass('remove-horizontal-scroll');
 })
+
+$('#signUp, #signIn').on('click', function () {
+  $('.signIn-form').toggleClass('hideBlock');
+  $('.signUp-form').toggleClass('hideBlock');
+})
+
+$('.signIn-form .auth-form__btn').on('click', function () {
+  createUser($( ".signIn-form .login-input" ).val(), $( ".signIn-form .password-input" ).val())
+      .then(value => {
+        console.log(value)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+  /*console.log($( ".signIn-form .login-input" ).val())
+  console.log($( ".signIn-form .password-input" ).val())*/
+})
+
 
 
 

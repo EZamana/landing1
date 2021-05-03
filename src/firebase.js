@@ -18,4 +18,7 @@ let firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-console.log('firebase')
+
+export default function createUser(email, password) {
+   return firebase.auth().createUserWithEmailAndPassword(email, password)
+}

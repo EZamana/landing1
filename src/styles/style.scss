@@ -325,12 +325,23 @@ a, a:hover {
   }
 }
 
-.sinIn-form {
+.auth-btn {
+  min-width: 53px;
+  height: 34px;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #d4d4d4;
+  color: #5c5c5c;
+  cursor: pointer;
+}
+
+.auth-form {
   display: flex;
   flex-wrap: wrap;
 
   &__title {
-    margin: 7px 7px 7px 0;
+    margin: 7px 7px 0;
     font-size: 15px;
     color: #acaaa2;
   }
@@ -344,7 +355,7 @@ a, a:hover {
     width: 135px;
     height: 22px;
     margin-right: 7px;
-    padding: 0 10px;
+    padding: 0 0 2px 10px;
     font-size: 14px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
