@@ -4,6 +4,7 @@ import "firebase/analytics";
 
 import "firebase/auth";
 import "firebase/firestore";
+import 'firebase/storage';
 
 let firebaseConfig = {
   apiKey: "AIzaSyB3x79gKP8eZOq0w1nEnVsTmpTgGv-ApFE",
@@ -18,7 +19,50 @@ let firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+let db = firebase.firestore();
+let featuredProducts = db.collection('featured')
+let productsCollection = db.collection('products')
 
-export default function createUser(email, password) {
+let storageRef = firebase.storage().ref();
+
+// тест
+
+export function addProduct(category, id, imagePath, cost, title) {
+  return productsCollection.doc(id.toString()).set({
+    category,
+    id,
+    imagePath,
+    cost,
+    title
+  })
+}
+
+// тест
+
+export function createUser(email, password) {
    return firebase.auth().createUserWithEmailAndPassword(email, password)
+}
+
+export function loginUser(email, password) {
+  return firebase.auth().signInWithEmailAndPassword(email, password)
+}
+
+export function logoutUser() {
+  return firebase.auth().signOut()
+}
+
+export function getFeaturedProducts() {
+  return featuredProducts.get()
+}
+
+export function getProductImage(imagePath) {
+  return storageRef.child(imagePath).getDownloadURL()
+}
+
+export function getLatestForLoadProducts (startAfter, limit) {
+  return productsCollection.orderBy('id').startAfter(startAfter).where('category',"==",'latestForLoad').limit(limit).get()
+}
+
+export function getLatestProducts() {
+  return productsCollection.where('category', "==", 'latest').get()
 }

@@ -50,6 +50,24 @@
               <div class="basket">
                 <div class="basket__counter">0</div>
               </div>
+              <div class="basket-modal hideBlock">
+                <div class="basket-modal__close-btn">Close</div>
+                <div class="basket-modal__row">
+                  <h3 class="basket-modal__title basket-modal__col">Product name:</h3>
+                  <h3 class="basket-modal__title basket-modal__col">Amount:</h3>
+                  <h3 class="basket-modal__title basket-modal__col">Cost:</h3>
+                  <div class="basket-modal__col"></div>
+                </div>
+                <div class="basket-modal__products">
+
+                </div>
+                <div class="basket-modal__row">
+                  <div class="basket-modal__col"></div>
+                  <h3 class="basket-modal__title basket-modal__col">Total cost:</h3>
+                  <h3 class="basket-modal__title basket-modal__col_total"></h3>
+                  <div class="basket-modal__col"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -61,7 +79,9 @@
           <div class="col">
             <ul class="catalog-navigation">
               <li class="catalog-navigation__item"><a href="" class="catalog-navigation__link">Desktops</a></li>
-              <li class="catalog-navigation__item"><a href="" class="catalog-navigation__link catalog-navigation__link_active">Laptops & Notebooks</a>
+              <li class="catalog-navigation__item"><a href=""
+                                                      class="catalog-navigation__link catalog-navigation__link_active">Laptops
+                & Notebooks</a>
                 <ul class="sub-catalog-navigation">
                   <li class="sub-catalog-navigation__item"><a href="" class="sub-catalog-navigation__link">Sony(2)</a>
                   </li>
@@ -94,10 +114,10 @@
     <div class="header-bottom-row">
       <div class="container-fluid">
         <div class="row justify-content-between flex-align-center">
-          <div class="col-auto">
+          <div class="col-md-12 col-lg-auto">
             <h2 class="header-bottom-row__title">Welcome visitor you can login or create an account.</h2>
           </div>
-          <div class="col-auto">
+          <div class="col-md-12 col-lg-auto">
             <div class="header-bottom-row__container">
               <div class="social-icons flex-align-center">
                 <img class="social-icons__item" src="./assets/images/socialIcon1.png" alt="">
@@ -115,23 +135,25 @@
                     <div class="auth-form__btn">
                       <img src="./assets/images/play.png" alt="">
                     </div>
+                    <div class="auth-form__validation-message gap-for-validation"></div>
                   </div>
                 </div>
               </div>
-              <div class="signUp-form hideBlock">
+              <div class="signUp-form">
                 <div class="auth-form">
                   <div class="auth-btn" id="signIn">Sign In</div>
                   <h2 class="auth-form__title">or Sign Up:</h2>
                   <div class="auth-form__container flex-align-center">
-                    <input class="auth-form__input" type="text" placeholder="Login">
-                    <input class="auth-form__input" type="password" placeholder="Password">
+                    <input class="auth-form__input login-input" type="text" placeholder="Login">
+                    <input class="auth-form__input password-input" type="password" placeholder="Password">
                     <div class="auth-form__btn">
                       <img src="./assets/images/play.png" alt="">
                     </div>
+                    <div class="auth-form__validation-message gap-for-validation"></div>
                   </div>
                 </div>
               </div>
-              <div class="auth-btn hideBlock" id="logout">Logout</div>
+              <div class="auth-btn" id="logout">Logout</div>
             </div>
           </div>
         </div>
@@ -194,62 +216,7 @@
         <div class="row">
           <div class="col">
             <div class="products">
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product2.png" alt="">
-                </div>
-                <p class="product__name">Product 2</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">444</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product3.png" alt="">
-                </div>
-                <p class="product__name">Product 3</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">333</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                </div>
-                <p class="product__name">Product 4</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">1112</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -258,8 +225,8 @@
           <img alt="">
           <div class="product-cost">
             <div class="product-cost__character character-dollar">$</div>
-            <p class="product-cost__value"></p>
-            <div class="product-cost__digits"></div>
+            <!--<p class="product-cost__value"></p>
+            <div class="product-cost__digits"></div>-->
           </div>
         </div>
       </section>
@@ -281,7 +248,7 @@
           <div class="col">
             <div class="brands-slider">
               <div class="arrowPrev"></div>
-              <div class="brands__container">
+              <div class="brands__container slider-container">
                 <div class="brands__item">
                   <img src="./assets/images/apple.png" alt="">
                 </div>
@@ -336,362 +303,38 @@
           <div class="col">
             <div class="products align-items-center hideBlock">
               <div class="arrowPrev"></div>
-              <div class="products-slider">
-                <div class="products-slider__item">
-                  <div class="product">
-                    <div class="product__img">
-                      <img src="./assets/images/product1.png" alt="">
-                      <div class="product-hover">
-                        <div class="product-hover__btn">Add to Compare</div>
-                        <div class="product-hover__btn">Add to Wishlist</div>
-                      </div>
-                    </div>
-                    <p class="product__name">Product 1</p>
-                    <div class="product__elements">
-                      <div class="product__btn">add to cart</div>
-                      <div class="product-cost">
-                        <div class="product-cost__character character-dollar">$</div>
-                        <p class="product-cost__value">22</p>
-                        <div class="product-cost__digits"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="products-slider__item">
-                  <div class="product">
-                    <div class="product__img">
-                      <img src="./assets/images/product2.png" alt="">
-                      <div class="product-hover">
-                        <div class="product-hover__btn">Add to Compare</div>
-                        <div class="product-hover__btn">Add to Wishlist</div>
-                      </div>
-                    </div>
-                    <p class="product__name">Product 2</p>
-                    <div class="product__elements">
-                      <div class="product__btn">add to cart</div>
-                      <div class="product-cost">
-                        <div class="product-cost__character character-dollar">$</div>
-                        <p class="product-cost__value">444</p>
-                        <div class="product-cost__digits"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="products-slider__item">
-                  <div class="product">
-                    <div class="product__img">
-                      <img src="./assets/images/product3.png" alt="">
-                      <div class="product-hover">
-                        <div class="product-hover__btn">Add to Compare</div>
-                        <div class="product-hover__btn">Add to Wishlist</div>
-                      </div>
-                    </div>
-                    <p class="product__name">Product 3</p>
-                    <div class="product__elements">
-                      <div class="product__btn">add to cart</div>
-                      <div class="product-cost">
-                        <div class="product-cost__character character-dollar">$</div>
-                        <p class="product-cost__value">333</p>
-                        <div class="product-cost__digits"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="products-slider__item">
-                  <div class="product">
-                    <div class="product__img">
-                      <img src="./assets/images/product1.png" alt="">
-                      <div class="product-hover">
-                        <div class="product-hover__btn">Add to Compare</div>
-                        <div class="product-hover__btn">Add to Wishlist</div>
-                      </div>
-                    </div>
-                    <p class="product__name">Product 4</p>
-                    <div class="product__elements">
-                      <div class="product__btn">add to cart</div>
-                      <div class="product-cost">
-                        <div class="product-cost__character character-dollar">$</div>
-                        <p class="product-cost__value">1112</p>
-                        <div class="product-cost__digits"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="products-slider__item">
-                  <div class="product">
-                    <div class="product__img">
-                      <img src="./assets/images/product1.png" alt="">
-                      <div class="product-hover">
-                        <div class="product-hover__btn">Add to Compare</div>
-                        <div class="product-hover__btn">Add to Wishlist</div>
-                      </div>
-                    </div>
-                    <p class="product__name">Product 1</p>
-                    <div class="product__elements">
-                      <div class="product__btn">add to cart</div>
-                      <div class="product-cost">
-                        <div class="product-cost__character character-dollar">$</div>
-                        <p class="product-cost__value">22</p>
-                        <div class="product-cost__digits"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="products-slider__item">
-                  <div class="product">
-                    <div class="product__img">
-                      <img src="./assets/images/product2.png" alt="">
-                      <div class="product-hover">
-                        <div class="product-hover__btn">Add to Compare</div>
-                        <div class="product-hover__btn">Add to Wishlist</div>
-                      </div>
-                    </div>
-                    <p class="product__name">Product 2</p>
-                    <div class="product__elements">
-                      <div class="product__btn">add to cart</div>
-                      <div class="product-cost">
-                        <div class="product-cost__character character-dollar">$</div>
-                        <p class="product-cost__value">444</p>
-                        <div class="product-cost__digits"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="products-slider__item">
-                  <div class="product">
-                    <div class="product__img">
-                      <img src="./assets/images/product3.png" alt="">
-                      <div class="product-hover">
-                        <div class="product-hover__btn">Add to Compare</div>
-                        <div class="product-hover__btn">Add to Wishlist</div>
-                      </div>
-                    </div>
-                    <p class="product__name">Product 3</p>
-                    <div class="product__elements">
-                      <div class="product__btn">add to cart</div>
-                      <div class="product-cost">
-                        <div class="product-cost__character character-dollar">$</div>
-                        <p class="product-cost__value">333</p>
-                        <div class="product-cost__digits"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="products-slider__item">
-                  <div class="product">
-                    <div class="product__img">
-                      <img src="./assets/images/product1.png" alt="">
-                      <div class="product-hover">
-                        <div class="product-hover__btn">Add to Compare</div>
-                        <div class="product-hover__btn">Add to Wishlist</div>
-                      </div>
-                    </div>
-                    <p class="product__name">Product 1</p>
-                    <div class="product__elements">
-                      <div class="product__btn">add to cart</div>
-                      <div class="product-cost">
-                        <div class="product-cost__character character-dollar">$</div>
-                        <p class="product-cost__value">22</p>
-                        <div class="product-cost__digits"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="products-slider slider-container"></div>
               <div class="arrowNext"></div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <div class="latest-products">
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="./assets/images/product1.png" alt="">
-                  <div class="product-hover">
-                    <div class="product-hover__btn">Add to Compare</div>
-                    <div class="product-hover__btn">Add to Wishlist</div>
-                  </div>
-                </div>
-                <p class="product__name">Product 1</p>
-                <div class="product__elements">
-                  <div class="product__btn">add to cart</div>
-                  <div class="product-cost">
-                    <div class="product-cost__character character-dollar">$</div>
-                    <p class="product-cost__value">22</p>
-                    <div class="product-cost__digits"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="latest-products"></div>
           </div>
         </div>
       </section>
     </div>
   </main>
-  <footer>
+  <!--<div style="margin: 0 auto">
+    <div>category</div>
+    <input type="text" class="addProd-category">
+    <div>id</div>
+    <input type="text" class="addProd-id">
+    <div>imagePath</div>
+    <input type="text" class="addProd-imagePath">
+    <div>cost</div>
+    <input type="text" class="addProd-cost">
+    <div>title</div>
+    <input type="text" class="addProd-title">
+    <div></div>
+    <input type="submit" class="addProd-sub">
+  </div>-->
+  <div class="loader-container ">
+    <!--<div class="loader"></div>-->
+  </div>
+
+  <footer >
     <div class="footer-top-row">
       <div class="container-fluid">
         <div class="row align-items-center">

@@ -38,6 +38,7 @@
     "firebase": "^8.4.3",
     "jquery": "^3.6.0",
     "popper.js": "^1.14.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "spinthatshit": "^1.0.4"
   }
 }
