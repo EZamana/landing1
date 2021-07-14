@@ -27,6 +27,7 @@ const productsSliderConfig = {
   speed: 300,
   slidesToShow: 4,
   slidesToScroll: 1,
+  infinite: false,
 
   responsive: [{
     breakpoint: 600,
@@ -52,22 +53,15 @@ const productsSliderConfig = {
   },]
 }
 
-//тест
+//code for creating products
 
-
-$('.addProd-sub').on('click', function () {
+/*$('.addProd-sub').on('click', function () {
 
   let category = $('.addProd-category').val()
   let id = parseInt($('.addProd-id').val())
   let imagePath = $('.addProd-imagePath').val()
   let cost = parseInt($('.addProd-cost').val())
   let title = $('.addProd-title').val()
-
-  /*console.log(typeof(category), category)
-  console.log(typeof(id), id)
-  console.log(typeof(imagePath), imagePath)
-  console.log(typeof(cost), cost)
-  console.log(typeof(title), title)*/
 
   addProduct(category, id, imagePath, cost, title)
       .then((result) => {
@@ -76,10 +70,7 @@ $('.addProd-sub').on('click', function () {
       .catch((error) => {
         console.log(error.message)
       })
-})
-
-
-//тест
+})*/
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
@@ -92,47 +83,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     $('.signUp-form .auth-form').css('display', 'none')
   }
 })
-
-/*function createCostBlock(costValueBlock) {
-  let costValues = $(costValueBlock).html().split('')
-
-  costValues.forEach(costValue => {
-    let newDiv = document.createElement('div')
-    newDiv.classList.add('product-cost__character')
-    newDiv.classList.add('character-digital')
-    newDiv.innerHTML = costValue;
-
-    $(costValueBlock).parent().find('.product-cost__digits').append(newDiv)
-  })
-}*/
-
-function addProductPopupOpen(btnSelector) {
-  $(btnSelector).on('click', (event) => {
-    let attr = $(event.target).closest('.product').find('img').attr('src')
-    let cost = $(event.target).closest('.product').find('.product-cost__value').html()
-    let productName = $(event.target).closest('.product').find('.product__name').html()
-    let popupCostValue = $('.products-modal .product-cost__value')
-    $('.products-modal img').attr('src', attr)
-    $('.products-modal .product__name').html(productName)
-    popupCostValue.html(cost)
-    createCostBlock(popupCostValue)
-    $.fancybox.open($('.products-modal'), {
-      afterClose: function () {
-        popupCostValue.closest('.product-cost').find('.product-cost__digits').html('')
-      }
-    })
-  })
-}
-
-$('.product-cost__value').each(function () {
-  createCostBlock(this)
-})
-
-/*productsSlider.on('init', function () {
-  addProductPopupOpen('.latest .product__btn')
-})
-
-addProductPopupOpen('.featured .product__btn')*/
 
 $('.brands__container').slick({
   speed: 300,
@@ -178,14 +128,14 @@ $('.product__img').each(function () {
   $(this).css('background-position', 'center top')
 })
 
-$('.switch-btn').on('click', () => {
+/*$('.switch-btn').on('click', () => {
   $('.switch-btn__line_active').toggleClass('closed')
   $('.products').toggleClass('hideBlock')
   if (!isProductSliderInit) {
     productsSlider.slick(productsSliderConfig);
     isProductSliderInit = !isProductSliderInit
   }
-})
+})*/
 
 $('.mobile-catalog-btn, .mobile-catalog__background').on('click', function () {
   $('.mobile-catalog__background').toggleClass('hideBlock');
@@ -201,17 +151,17 @@ $('#signIn').on('click', function () {
 $('#signUp').on('click', function () {
   $('.signIn-form .auth-form').css('display', 'none');
   $('.signUp-form .auth-form').css('display', 'flex');
+  $('.auth-form__validation-message').html('');
 })
 
-$('.auth-form__btn').on('click', function () {
+$('.auth-btn').on('click', function () {
   $('.auth-form__validation-message').html('');
+  $(".login-input").val('')
+  $(".password-input").val('')
 })
 
 $('.signUp-form .auth-form__btn').on('click', function () {
   createUser($(".signUp-form .login-input").val(), $(".signUp-form .password-input").val())
-      .then(value => {
-        console.log(value)
-      })
       .catch(error => {
         $('.signUp-form .auth-form__validation-message').html(error.message);
       })
@@ -243,90 +193,71 @@ $('.featured-products .arrowNext').click(function () {
   $(this).siblings('.featured-slider').slick('slickNext')
 })
 
-/*function createCostBlock(costValueBlock) {
-  console.log(costValueBlock)
-  let costValues = $(costValueBlock).html().split('')
+function createProduct(id, productName, costValue, imagePath, productHasHover, forSlider) {
+  let newProduct = $('<div></div>').addClass('product')
 
-  costValues.forEach(costValue => {
-    let newDiv = document.createElement('div')
-    newDiv.classList.add('product-cost__character')
-    newDiv.classList.add('character-digital')
-    newDiv.innerHTML = costValue;
+  let productImg = $('<div></div>').addClass('product__img').css('background', `url(${imagePath}) center top`)
 
-    $(costValueBlock).parent().find('.product-cost__digits').append(newDiv)
-  })
-}*/
+  if (productHasHover) {
+    let productHover = $('<div></div>').addClass('product-hover')
 
-function createProduct(id, productName, costValue, imagePath) {
-  let newProduct = document.createElement('div')
-  newProduct.classList.add('product')
+    let compareBtn = $('<div></div>').addClass('product-hover__btn').html('Add to Compare')
 
-  let productImg = document.createElement('div')
-  productImg.classList.add('product__img')
-  productImg.style.background = `url(${imagePath}) center top`
+    let wishListBtn = $('<div></div>').addClass('product-hover__btn').html('Add to Wishlist')
 
-  let productNameBlock = document.createElement('p')
-  productNameBlock.classList.add("product__name")
-  productNameBlock.innerHTML = productName
+    productHover.append(compareBtn, wishListBtn)
 
-  let productElements = document.createElement('div')
-  productElements.classList.add('product__elements')
-
-  let productBtn = document.createElement('div')
-  productBtn.classList.add('product__btn')
-  productBtn.innerHTML = 'add to cart';
-  addProductPopupOpen1(productBtn, productName, imagePath, costValue)
-  productBtn.onclick = () => {
-    /*addProductToStorage(id)*/
-    addProductToStorage1(id, productName, costValue)
-    renderProductsCart1()
+    productImg.append(productHover)
   }
 
-  let productCost = document.createElement('div')
-  productCost.classList.add('product-cost')
+  let productNameBlock = $('<p></p>').addClass('product__name').html(productName)
 
-  let characterDollar = document.createElement('div')
-  characterDollar.innerHTML = '$'
-  characterDollar.classList.add('product-cost__character')
-  characterDollar.classList.add('character-dollar')
+  let productElements = $('<div></div>').addClass('product__elements')
 
-  let costValuesBlock = createCostBlock1(costValue)
-  costValuesBlock.classList.add('product-cost__digits')
+  let productBtn = $('<div></div>').addClass('product__btn').html('add to cart')
 
-  productCost.append(characterDollar)
-  productCost.append(costValuesBlock)
+  if (!forSlider) {
+    productBtn.on('click', function () {
+      addProductToStorage(id, productName, costValue)
+      renderProductsCart()
+    })
 
-  productElements.append(productBtn)
-  productElements.append(productCost)
+    addProductPopupOpen(productBtn, productName, imagePath, costValue)
+  }
 
-  newProduct.append(productImg)
-  newProduct.append(productNameBlock)
-  newProduct.append(productElements)
+  let productCost = $('<div></div>').addClass('product-cost')
+
+  let characterDollar = $('<div></div>').addClass('product-cost__character character-dollar').html('$')
+
+  let costValuesBlock = createCostBlock(costValue).addClass('product-cost__digits')
+
+  productCost.append(characterDollar, costValuesBlock)
+
+  productElements.append(productBtn, productCost)
+
+  newProduct.append(productImg, productNameBlock, productElements)
 
   return newProduct
 }
 
-function createCostBlock1(costValue) {
-  console.log('1')
-  let costBlock = document.createElement('div')
+function createCostBlock(costValue) {
+  let costBlock = $('<div></div>')
+
   let costValues = costValue.toString().split('')
 
   costValues.forEach(costValue => {
-    let newDiv = document.createElement('div')
-    newDiv.classList.add('product-cost__character')
-    newDiv.classList.add('character-digital')
-    newDiv.innerHTML = costValue;
+    let digit = $('<div></div>').addClass('product-cost__character character-digital').html(costValue)
 
-    costBlock.append(newDiv)
+    costBlock.append(digit)
   })
 
   return costBlock
 }
 
-function addProductPopupOpen1(selector, productName, imageURL, costValue) {
+function addProductPopupOpen(selector, productName, imageURL, costValue) {
   $(selector).on('click', () => {
-    let newCostBlock = createCostBlock1(costValue)
-    newCostBlock.classList.add('product-cost__digits')
+    let newCostBlock = createCostBlock(costValue).addClass('product-cost__digits')
+
     $('.products-modal .product-cost').append(newCostBlock)
 
     $('.products-modal img').attr('src', imageURL)
@@ -346,12 +277,8 @@ getFeaturedProducts().then(products => {
   products.forEach(product => {
     getProductImage(product.data().imagePath).then(url => {
       $('.featured .products').append(createProduct(product.data().id, product.data().title, product.data().cost, url))
-      allProducts.push(product.data())
     })
   })
-  console.log(allProducts)
-  createProductsCartArr()
-  /*renderProductsCart()*/
 }).catch(error => {
   console.log(error.message)
 })
@@ -360,18 +287,7 @@ function checkCartInStorage() {
   return !!localStorage.getItem('cart')
 }
 
-function addProductToStorage(id) {
-  if (checkCartInStorage()) {
-    let currentCart = JSON.parse(localStorage.getItem('cart'))
-    currentCart.push(id)
-    localStorage.setItem('cart', JSON.stringify(currentCart))
-  } else {
-    localStorage.setItem('cart', `[${id}]`)
-  }
-  /*updateCartCounter()*/
-}
-
-function addProductToStorage1(id, productName, productCost) {
+function addProductToStorage(id, productName, productCost) {
   if (checkCartInStorage()) {
     let isProductDuplicated = false
 
@@ -394,7 +310,7 @@ function addProductToStorage1(id, productName, productCost) {
   }
 }
 
-function removeProductFromStorage1(id) {
+function removeProductFromStorage(id) {
   let currentCart = JSON.parse(localStorage.getItem('cart'))
 
   currentCart.forEach((product, index) => {
@@ -410,183 +326,62 @@ function removeProductFromStorage1(id) {
   })
 }
 
-function removeProductFromStorage(id) {
-  let currentCart = JSON.parse(localStorage.getItem('cart'))
-
-  let index = currentCart.indexOf(id)
-
-  if (index > -1) {
-    currentCart.splice(index, 1)
-    localStorage.setItem('cart', JSON.stringify(currentCart))
-  }
-}
-
-function updateCartCounter() {
-  if (checkCartInStorage()) {
-    let productsCounter = JSON.parse(localStorage.getItem('cart')).length
-    $('.basket__counter').html(productsCounter)
-  } else {
-    $('.basket__counter').html('0')
-  }
-}
-
 function updateCartCounter1(counter) {
   $('.basket__counter').html(counter)
 }
 
-/*updateCartCounter()*/
-
-/*console.log(localStorage.getItem('cart'))*/
-
-let productsCartArr = [];
-
-let allProducts = []
-
-function addProductToCart(id, productName, productCost) {
-  let isProductDuplicated = false
-
-  for (let product of productsCartArr) {
-    if (product.id === id) {
-      isProductDuplicated = true;
-      product.amount++
-    }
-  }
-
-  if (!isProductDuplicated) {
-    productsCartArr.push({id, productName, productCost, amount: 1})
-  }
-}
-
-function removeProductFromCart(id) {
-  for (let product of productsCartArr) {
-    if (product.id === id) {
-      if (product.amount > 1) {
-        product.amount--
-      } else {
-        let index = productsCartArr.indexOf(product)
-        console.log(index)
-        productsCartArr.splice(index, 1);
-      }
-    }
-  }
-}
-
 function renderProductsCart() {
-  let totalCost = 0
-
-  $('.basket-modal__products .basket-modal__row').remove()
-
-  productsCartArr.forEach(product => {
-    totalCost += product.productCost * product.amount
-
-    console.log(product.productCost, product.amount)
-
-    let productContainer = $('<div></div>').addClass('basket-modal__row');
-    let productName = $('<div></div>').addClass('basket-modal__col').html(`${product.productName}`)
-    let productAmount = $('<div></div>').addClass('basket-modal__col').html(`x${product.amount}`)
-    let productCost = $('<div></div>').addClass('basket-modal__col').html(`${product.productCost * product.amount}`)
-    let closeIcon = $('<div></div>').addClass('basket-modal__col').append($('<div></div>')
-        .addClass('basket-modal__close-icon').on('click', function () {
-          removeProductFromStorage(product.id)
-          removeProductFromCart(product.id)
-          renderProductsCart()
-        }))
-
-    productContainer.append(productName)
-    productContainer.append(productAmount)
-    productContainer.append(productCost)
-    productContainer.append(closeIcon)
-
-    $('.basket-modal__products').append(productContainer)
-  })
-
-  $('.basket-modal__col_total').html(`${totalCost.toString()}`)
-}
-
-function renderProductsCart1() {
   let totalCost = 0
 
   let totalProducts = 0
 
   $('.basket-modal__products .basket-modal__row').remove()
 
-  let currentCart = JSON.parse(localStorage.getItem('cart'))
+  if (checkCartInStorage()) {
+    let currentCart = JSON.parse(localStorage.getItem('cart'))
 
-  currentCart.forEach(product => {
-    totalCost += product.productCost * product.amount
+    currentCart.forEach(product => {
+      totalCost += product.productCost * product.amount
 
-    totalProducts++
+      totalProducts += product.amount
 
-    let productContainer = $('<div></div>').addClass('basket-modal__row');
-    let productName = $('<div></div>').addClass('basket-modal__col').html(`${product.productName}`)
-    let productAmount = $('<div></div>').addClass('basket-modal__col').html(`x${product.amount}`)
-    let productCost = $('<div></div>').addClass('basket-modal__col').html(`${product.productCost * product.amount}`)
-    let closeIcon = $('<div></div>').addClass('basket-modal__col').append($('<div></div>')
-        .addClass('basket-modal__close-icon').on('click', function () {
-          removeProductFromStorage1(product.id)
-          renderProductsCart1()
-        }))
+      let productContainer = $('<div></div>').addClass('basket-modal__row');
+      let productName = $('<div></div>').addClass('basket-modal__col').html(`${product.productName}`)
+      let productAmount = $('<div></div>').addClass('basket-modal__col').html(`x${product.amount}`)
+      let productCost = $('<div></div>').addClass('basket-modal__col').html(`${product.productCost * product.amount}`)
+      let closeIcon = $('<div></div>').addClass('basket-modal__col').append($('<div></div>')
+          .addClass('basket-modal__close-icon').on('click', function () {
+            removeProductFromStorage(product.id)
+            renderProductsCart()
+          }))
 
-    productContainer.append(productName)
-    productContainer.append(productAmount)
-    productContainer.append(productCost)
-    productContainer.append(closeIcon)
+      productContainer.append(productName)
+      productContainer.append(productAmount)
+      productContainer.append(productCost)
+      productContainer.append(closeIcon)
 
-    $('.basket-modal__products').append(productContainer)
-  })
+      $('.basket-modal__products').append(productContainer)
+    })
+  }
 
   $('.basket-modal__col_total').html(`${totalCost.toString()}`)
 
   updateCartCounter1(totalProducts)
 }
 
-function createProductsCartArr() {
-  let storageProducts = JSON.parse(localStorage.getItem('cart'))
-  /*console.log(storageProducts)*/
-  console.log(allProducts)
-
-  /*allProducts.forEach(product => {
-    console.log(product)
-  })*/
-
-  /*storageProducts.forEach(id => {
-    console.log(id)
-  })*/
-
-  /*for (let product of allProducts) {
-    console.log(product)
-  }*/
-}
-
-/*createProductsCartArr()*/
-
-/*renderProductsCart()*/
-
-renderProductsCart1()
-
+renderProductsCart()
 
 let isLatestProductsLoaded = false
 let lastLatestProductId = 0
 let isLatestProductLoading = false
-
 
 if (document.documentElement.clientHeight > document.documentElement.scrollHeight - $('footer').outerHeight()) {
   /*$('.latest-products .product').slice(0, 4).show()*/
   console.log('1')
 }
 
-
 async function loadLatestProducts(startAfter, limit) {
   try {
-    /* console.log('START')
-     console.log(`pageYOffset - ${pageYOffset}`)
-     console.log(`document.documentElement.scrollHeight - ${document.documentElement.scrollHeight}`)
-     console.log(`document.documentElement.clientHeight - ${document.documentElement.clientHeight}`)
-     /!*    console.log(`isLatestProductsLoaded - ${isLatestProductsLoaded}`)
-         console.log(`lastLatestProductId - ${lastLatestProductId}`)
-         console.log(`isLatestProductLoading - ${isLatestProductLoading}`)*!/*/
-
-
     let productsCounter = 0;
 
     let urlRequests = []
@@ -654,10 +449,6 @@ $(document).on('scroll', function () {
   }
 })
 
-/*console.log(`pageYOffset - ${pageYOffset}`);
-console.log(`document.documentElement.scrollHeight - ${document.documentElement.scrollHeight}`)
-console.log(`document.documentElement.clientHeight - ${document.documentElement.clientHeight}`)*/
-
 async function addProductsSliderItems() {
   try {
     let products = []
@@ -676,12 +467,32 @@ async function addProductsSliderItems() {
     products.forEach((product, index) => {
       let sliderItem = $('<div></div>').addClass('products-slider__item')
 
-      $('.products-slider').append(sliderItem.append(createProduct(product.id, product.title, product.cost, images[index])))
+      $('.products-slider').append(sliderItem.append(createProduct(product.id, product.title, product.cost, images[index], true, true)))
+
+      let currentProductBtn = $('.products-slider__item .product__btn')[index]
 
       productsSlider.on('init', function () {
-        addProductPopupOpen1($('.products-slider__item .product__btn')[index], product.title, images[index], product.cost)
+        $('body').find(currentProductBtn).on('click', function () {
+          addProductToStorage(product.id, product.title, product.cost)
+          renderProductsCart()
+        })
+
+        addProductPopupOpen(currentProductBtn, product.title, images[index], product.cost)
       })
     })
+
+    $('.switch-btn').on('click', () => {
+      $('.switch-btn__line_active').toggleClass('closed')
+      $('.products').toggleClass('hideBlock')
+      if (!isProductSliderInit) {
+        productsSlider.slick(productsSliderConfig);
+        isProductSliderInit = !isProductSliderInit
+      }
+    })
+
+    $('.switch-btn').toggleClass('disabledBtn')
+
+
   } catch (err) {
     console.log(err.message)
   }

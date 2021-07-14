@@ -237,10 +237,9 @@ a, a:hover {
 }
 
 .mobile-catalog {
-
   &__container {
     display: block;
-    position: absolute;
+    position: fixed;
     right: 0;
     max-width: 0;
     width: 60%;
@@ -257,6 +256,10 @@ a, a:hover {
 
   &__sublist {
     margin: 5px 10px;
+
+    .mobile-catalog__item {
+      list-style-type: circle;
+    }
 
     &-link {
       color: #7d7253;
@@ -275,7 +278,7 @@ a, a:hover {
 
   &__background {
     display: block;
-    position: absolute;
+    position: fixed;
     z-index: 2;
     width: 100%;
     background-color: black;
@@ -588,10 +591,6 @@ a, a:hover {
     height: 175px;
     width: 200px;
     box-shadow: inset 2px 2px #beb8af, 2px 2px #efefef;
-
-    img {
-      display: none;
-    }
   }
 
   &:hover .product-hover:before {
@@ -1034,6 +1033,11 @@ a, a:hover {
   color: white;
   text-align: center;
 
+  &__products {
+    overflow:auto;
+    max-height: 400px;
+  }
+
   &__close-btn {
     position: absolute;
     right: 15px;
@@ -1066,6 +1070,18 @@ a, a:hover {
     font-size: 16px;
     font-weight: bolder;
   }
+
+  @media (max-width: 767px) {
+    & {
+      width: 300px;
+    }
+
+    .basket-modal__products {
+      max-height: 200px;
+    }
+
+
+  }
 }
 
 .loader-container {
@@ -1082,6 +1098,10 @@ a, a:hover {
 
 .loader-gap {
   margin: 40px;
+}
+
+.disabledBtn {
+  background-color: #d8d8d8;
 }
 
 
