@@ -23,6 +23,11 @@ const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
 const productsSlider = $('.products-slider');
 let isProductSliderInit = false
 
+let isLatestProductsLoaded = false
+let lastLatestProductId = 0
+let isLatestProductLoading = false
+let isFeaturedProductLoaded = false
+
 const productsSliderConfig = {
   speed: 300,
   slidesToShow: 4,
@@ -264,16 +269,6 @@ function addProductPopupOpen(selector, productName, imageURL, costValue) {
   })
 }
 
-getFeaturedProducts().then(products => {
-  products.forEach(product => {
-    getProductImage(product.data().imagePath).then(url => {
-      $('.featured .products').append(createProduct(product.data().id, product.data().title, product.data().cost, url))
-    })
-  })
-}).catch(error => {
-  console.log(error.message)
-})
-
 function checkCartInStorage() {
   return !!localStorage.getItem('cart')
 }
@@ -321,6 +316,10 @@ function updateCartCounter(counter) {
   $('.basket__counter').html(counter)
 }
 
+$('.basket-modal__close-btn, .basket').on('click', function () {
+  $('.basket-modal').toggleClass('hideBlock')
+})
+
 function renderProductsCart() {
   let totalCost = 0
 
@@ -366,17 +365,6 @@ function renderProductsCart() {
   }
 
   updateCartCounter(totalProducts)
-}
-
-renderProductsCart()
-
-let isLatestProductsLoaded = false
-let lastLatestProductId = 0
-let isLatestProductLoading = false
-
-if (document.documentElement.clientHeight > document.documentElement.scrollHeight - $('footer').outerHeight()) {
-  /*$('.latest-products .product').slice(0, 4).show()*/
-  console.log('1')
 }
 
 async function loadLatestProducts(startAfter, limit) {
@@ -443,10 +431,36 @@ function showFooter() {
 }
 
 $(document).on('scroll', function () {
-  if (pageYOffset >= document.documentElement.scrollHeight - document.documentElement.clientHeight /*- $('footer').outerHeight()*/ && !isLatestProductsLoaded && !isLatestProductLoading) {
+  if (pageYOffset >= document.documentElement.scrollHeight - document.documentElement.clientHeight && !isLatestProductsLoaded && !isLatestProductLoading && isFeaturedProductLoaded) {
     loadLatestProducts(lastLatestProductId, 4).then()
   }
 })
+
+async function loadFeaturedProducts() {
+  try {
+    let products = []
+
+    let urlRequests = []
+
+    let productsPromise = await getFeaturedProducts()
+
+    productsPromise.forEach(product => {
+      products.push(product.data())
+      urlRequests.push(getProductImage(product.data().imagePath))
+    })
+
+    let images = await Promise.all(urlRequests)
+
+    products.forEach((product, index) => {
+      $('.featured .products').append(createProduct(product.id, product.title, product.cost, images[index]))
+    })
+
+    isFeaturedProductLoaded = true
+
+  } catch (err) {
+    console.log(err.message)
+  }
+}
 
 async function addProductsSliderItems() {
   try {
@@ -497,11 +511,11 @@ async function addProductsSliderItems() {
   }
 }
 
+renderProductsCart()
+
 addProductsSliderItems().then()
 
-$('.basket-modal__close-btn, .basket').on('click', function () {
-  $('.basket-modal').toggleClass('hideBlock')
-})
+loadFeaturedProducts().then()
 
 
 
