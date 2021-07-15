@@ -30,6 +30,11 @@ h1, h2, h3 {
   align-items: center;
 }
 
+.flex-justify-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
 html, body {
   height: 100%;
 }
@@ -73,20 +78,19 @@ a, a:hover {
     min-height: 80px;
   }
 
-  &__container {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
   &__title {
     position: relative;
     font-size: 30px;
     color: white;
     margin-left: 36px;
     font-weight: 500;
+
+    @media (max-width: 767px) {
+      & {
+        left: 18px;
+      }
+    }
+
 
     &:before {
       content: url("../assets/images/flame.png");
@@ -96,12 +100,15 @@ a, a:hover {
   }
 
   &__subtitle {
-    margin: 4px 0 0 20px;
-    @extend %header-top-text-style
+    margin-top: 4px;
+    @extend %header-top-text-style;
   }
 }
 
 .site-navigation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
   &__item {
     margin: 0 6px;
@@ -116,6 +123,12 @@ a, a:hover {
   }
 }
 
+@media (max-width: 767px) {
+  .site-navigation, .header-top-row__title, .header-top-row__subtitle {
+    margin: 0 auto;
+  }
+}
+
 .basket {
   width: 34px;
   height: 34px;
@@ -123,6 +136,7 @@ a, a:hover {
   border: 2px solid #ed3d1d;
   border-radius: 8px;
   margin: 8px;
+  cursor: pointer;
 
   &:after {
     position: absolute;
@@ -1023,9 +1037,9 @@ a, a:hover {
 .basket-modal {
   z-index: 3;
   position: absolute;
-  top: 0;
+  top: 5px;
   width: 400px;
-  min-height: 120px;
+  /*min-height: 120px;*/
   padding: 15px;
   border-radius: 10px;
   border: 1px solid white;
@@ -1071,6 +1085,10 @@ a, a:hover {
     font-weight: bolder;
   }
 
+  &__notification-message {
+    display: none;
+  }
+
   @media (max-width: 767px) {
     & {
       width: 300px;
@@ -1080,7 +1098,9 @@ a, a:hover {
       max-height: 200px;
     }
 
-
+    .basket-modal__col, .basket-modal__title, .basket-modal__close-btn {
+      font-size: 14px;
+    }
   }
 }
 
