@@ -572,9 +572,11 @@ a, a:hover {
 }
 
 .products, .latest-products {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  /*display: flex;*/
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 225px);
+  grid-gap: 10px;
+  justify-content: space-around;
 }
 
 .hideBlock {
@@ -586,16 +588,12 @@ a, a:hover {
 }
 
 .product {
-  flex: 0 0 24%;
+  width: 225px;
   background-color: #d8d8d8;
   padding: 10px;
   margin: 35px 0;
   border: 2px solid #bcbcbc;
   border-radius: 5px;
-
-  &:not(:nth-child(4n+1)) {
-    margin-left: calc((100% - (24% * 4)) / 3);
-  }
 
   @media (max-width: 767px) {
     & {
