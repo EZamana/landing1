@@ -192,6 +192,10 @@ $('.featured-products .arrowNext').click(function () {
 function createProduct(id, productName, costValue, imagePath, productHasHover, forSlider) {
   let newProduct = $('<div></div>').addClass('product')
 
+  /*newProduct.data('product', {id, productName, costValue, imagePath})*/
+
+  newProduct.attr('data-id', id).attr('data-product', productName).attr('data-cost', costValue).attr('data-image', imagePath)
+
   let productImg = $('<div></div>').addClass('product__img').css('background', `url(${imagePath}) center top`)
 
   if (productHasHover) {
@@ -214,11 +218,10 @@ function createProduct(id, productName, costValue, imagePath, productHasHover, f
 
   if (!forSlider) {
     productBtn.on('click', function () {
-      addProductToStorage(id, productName, costValue)
+      addProductToStorage()
       renderProductsCart()
+      addProductPopupOpen()
     })
-
-    addProductPopupOpen(productBtn, productName, imagePath, costValue)
   }
 
   let productCost = $('<div></div>').addClass('product-cost')
@@ -250,22 +253,24 @@ function createCostBlock(costValue) {
   return costBlock
 }
 
-function addProductPopupOpen(selector, productName, imageURL, costValue) {
-  $(selector).on('click', () => {
-    let newCostBlock = createCostBlock(costValue).addClass('product-cost__digits')
+function addProductPopupOpen() {
+  let product = $(event.target).closest('.product').attr('data-product')
+  let cost = parseInt($(event.target).closest('.product').attr('data-cost'))
+  let imagePath = $(event.target).closest('.product').attr('data-image')
 
-    $('.products-modal .product-cost').append(newCostBlock)
+  let newCostBlock = createCostBlock(cost).addClass('product-cost__digits')
 
-    $('.products-modal img').attr('src', imageURL)
+  $('.products-modal .product-cost').append(newCostBlock)
 
-    $('.products-modal .product__name').html(`${productName} added to the cart!`)
+  $('.products-modal img').attr('src', imagePath)
 
-    $.fancybox.open($('.products-modal'), {
-      afterClose: function () {
-        $('.products-modal .product-cost__digits').remove()
-        $('.products-modal img').removeAttr('src')
-      }
-    })
+  $('.products-modal .product__name').html(`${product} added to the cart!`)
+
+  $.fancybox.open($('.products-modal'), {
+    afterClose: function () {
+      $('.products-modal .product-cost__digits').remove()
+      $('.products-modal img').removeAttr('src')
+    }
   })
 }
 
@@ -273,14 +278,18 @@ function checkCartInStorage() {
   return !!localStorage.getItem('cart')
 }
 
-function addProductToStorage(id, productName, productCost) {
+function addProductToStorage() {
+  let productId = parseInt($(event.target).closest('.product').attr('data-id'))
+  let product = $(event.target).closest('.product').attr('data-product')
+  let cost = parseInt($(event.target).closest('.product').attr('data-cost'))
+
   if (checkCartInStorage()) {
     let isProductDuplicated = false
 
     let currentCart = JSON.parse(localStorage.getItem('cart'))
 
     for (let product of currentCart) {
-      if (product.id === id) {
+      if (product.id === productId) {
         isProductDuplicated = true;
         product.amount++
         localStorage.setItem('cart', JSON.stringify(currentCart))
@@ -288,19 +297,21 @@ function addProductToStorage(id, productName, productCost) {
     }
 
     if (!isProductDuplicated) {
-      currentCart.push({id, productName, productCost, amount: 1})
+      currentCart.push({id: productId, productName: product, productCost: cost, amount: 1})
       localStorage.setItem('cart', JSON.stringify(currentCart))
     }
   } else {
-    localStorage.setItem('cart', JSON.stringify([{id, productName, productCost, amount: 1}]))
+    localStorage.setItem('cart', JSON.stringify([{id: productId, productName: product, productCost: cost, amount: 1}]))
   }
 }
 
-function removeProductFromStorage(id) {
+function removeProductFromStorage() {
+  let productId = parseInt($(event.target).closest('.basket-modal__close-icon').attr('data-id'))
+
   let currentCart = JSON.parse(localStorage.getItem('cart'))
 
   currentCart.forEach((product, index) => {
-    if (product.id === id) {
+    if (product.id === productId) {
       if (product.amount > 1) {
         product.amount--
         localStorage.setItem('cart', JSON.stringify(currentCart))
@@ -340,8 +351,8 @@ function renderProductsCart() {
       let productAmount = $('<div></div>').addClass('basket-modal__col').html(`x${product.amount}`)
       let productCost = $('<div></div>').addClass('basket-modal__col').html(`${product.productCost * product.amount}`)
       let closeIcon = $('<div></div>').addClass('basket-modal__col').append($('<div></div>')
-          .addClass('basket-modal__close-icon').on('click', function () {
-            removeProductFromStorage(product.id)
+          .addClass('basket-modal__close-icon').attr('data-id', product.id).on('click', function () {
+            removeProductFromStorage()
             renderProductsCart()
           }))
 
@@ -482,15 +493,14 @@ async function addProductsSliderItems() {
 
       $('.products-slider').append(sliderItem.append(createProduct(product.id, product.title, product.cost, images[index], true, true)))
 
-      let currentProductBtn = $('.products-slider__item .product__btn')[index]
+      /*let currentProductBtn = $('.products-slider__item .product__btn')[index]*/
 
-      productsSlider.on('init', function () {
-        $('body').find(currentProductBtn).on('click', function () {
-          addProductToStorage(product.id, product.title, product.cost)
+      $(document).ready(function () {
+        $(document).on('click', `.products-slider__item .product__btn:eq(${index})`, function () {
+          addProductToStorage()
           renderProductsCart()
+          addProductPopupOpen()
         })
-
-        addProductPopupOpen(currentProductBtn, product.title, images[index], product.cost)
       })
     })
 

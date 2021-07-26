@@ -571,10 +571,10 @@ a, a:hover {
   margin-top: 45px;
 }
 
-.products {
+.products, .latest-products {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .hideBlock {
@@ -586,12 +586,16 @@ a, a:hover {
 }
 
 .product {
+  flex: 0 0 24%;
   background-color: #d8d8d8;
-  width: 220px;
   padding: 10px;
   margin: 35px 0;
   border: 2px solid #bcbcbc;
   border-radius: 5px;
+
+  &:not(:nth-child(4n+1)) {
+    margin-left: calc((100% - (24% * 4)) / 3);
+  }
 
   @media (max-width: 767px) {
     & {
@@ -600,10 +604,13 @@ a, a:hover {
   }
 
   &__img {
-    position: relative;
     height: 175px;
     width: 200px;
-    box-shadow: inset 2px 2px #beb8af, 2px 2px #efefef;
+    box-shadow: inset 2px 2px #beb8af, inset -2px -2px #efefef;
+
+    img {
+      display: none;
+    }
   }
 
   &:hover .product-hover:before {
@@ -825,6 +832,7 @@ a, a:hover {
   }
 
   .product {
+    width: 225px;
     margin-right: auto;
     margin-left: auto;
   }
@@ -1027,12 +1035,6 @@ a, a:hover {
   transform: scale(1);
 }
 
-.latest-products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
 .basket-modal {
   z-index: 3;
   position: absolute;
@@ -1047,7 +1049,7 @@ a, a:hover {
   text-align: center;
 
   &__products {
-    overflow:auto;
+    overflow: auto;
     max-height: 400px;
   }
 
