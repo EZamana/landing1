@@ -572,7 +572,6 @@ a, a:hover {
 }
 
 .products, .latest-products {
-  /*display: flex;*/
   display: grid;
   grid-template-columns: repeat(auto-fill, 225px);
   grid-gap: 10px;
@@ -808,7 +807,7 @@ a, a:hover {
   cursor: pointer;
 }
 
-.products-slider, .featured-slider {
+.products-slider__container, .featured-slider {
   max-width: 940px;
 
   @media (max-width: 991px) {
@@ -1038,7 +1037,6 @@ a, a:hover {
   position: absolute;
   top: 5px;
   width: 400px;
-  /*min-height: 120px;*/
   padding: 15px;
   border-radius: 10px;
   border: 1px solid white;
@@ -1122,7 +1120,6 @@ a, a:hover {
 .disabledBtn {
   background-color: #d8d8d8;
 }
-
 
 
 

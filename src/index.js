@@ -20,7 +20,7 @@ window.$ = window.jQuery = require('jquery');
 const fancybox = require('@fancyapps/fancybox');
 const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
 
-const productsSlider = $('.products-slider');
+const productsSlider = $('.products-slider__container');
 let isProductSliderInit = false
 
 let isLatestProductsLoaded = false
@@ -119,11 +119,11 @@ $('.brands__container').slick({
   },]
 });
 
-$('.brands-slider .arrowPrev, .products .arrowPrev').click(function () {
+$('.brands-slider .arrowPrev, .products-slider .arrowPrev').click(function () {
   $(this).siblings('.slider-container').slick('slickPrev')
 })
 
-$('.brands-slider .arrowNext, .products .arrowNext').click(function () {
+$('.brands-slider .arrowNext, .products-slider .arrowNext').click(function () {
   $(this).siblings('.slider-container').slick('slickNext')
 })
 
@@ -491,9 +491,9 @@ async function addProductsSliderItems() {
     products.forEach((product, index) => {
       let sliderItem = $('<div></div>').addClass('products-slider__item')
 
-      $('.products-slider').append(sliderItem.append(createProduct(product.id, product.title, product.cost, images[index], true, true)))
+      $('.products-slider__container').append(sliderItem.append(createProduct(product.id, product.title, product.cost, images[index], true, true)))
 
-      /*let currentProductBtn = $('.products-slider__item .product__btn')[index]*/
+      console.log('added')
 
       $(document).ready(function () {
         $(document).on('click', `.products-slider__item .product__btn:eq(${index})`, function () {
@@ -506,7 +506,8 @@ async function addProductsSliderItems() {
 
     $('.switch-btn').on('click', () => {
       $('.switch-btn__line_active').toggleClass('closed')
-      $('.products').toggleClass('hideBlock')
+      $('.featured .products').toggleClass('hideBlock')
+      $('.products-slider').toggleClass('hideBlock')
       if (!isProductSliderInit) {
         productsSlider.slick(productsSliderConfig);
         isProductSliderInit = !isProductSliderInit
